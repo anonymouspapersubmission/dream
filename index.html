@@ -1,0 +1,484 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+  <html>
+
+  <!-- ======================================================================= -->
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+  <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+  <style type="text/css">
+    body {
+      font-family: "Crimson Text","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight:300;
+      font-size:18px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    pre {
+      background-color: #f6f8fa;
+      padding: 16px;
+    }
+
+    code {
+      font-family: "SFMono-Regular","Consolas","Liberation Mono","Menlo",monospace;
+      overflow: scroll;
+    }
+
+    h1 {
+      font-family: "Source Sans Pro";
+      font-weight:300;
+    }
+
+    div {
+      max-width: 95%;
+      margin:auto;
+      padding: 10px;
+    }
+
+    .table-like {
+      display: flex;
+      flex-wrap: wrap;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    .disclaimerbox {
+      background-color: #eee;
+      border: 1px solid #eeeeee;
+      border-radius: 10px ;
+      -moz-border-radius: 10px ;
+      -webkit-border-radius: 10px ;
+      padding: 20px;
+    }
+
+    video.header-vid {
+      height: 140px;
+      border: 1px solid black;
+      border-radius: 10px ;
+      -moz-border-radius: 10px ;
+      -webkit-border-radius: 10px ;
+    }
+
+    img {
+      padding: 0;
+      display: block;
+      margin: 0 auto;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    iframe {
+      max-width: 100%;
+    }
+
+    img.header-img {
+      height: 140px;
+      border: 1px solid black;
+      border-radius: 10px ;
+      -moz-border-radius: 10px ;
+      -webkit-border-radius: 10px ;
+    }
+
+    img.rounded {
+      border: 1px solid #eeeeee;
+      border-radius: 10px ;
+      -moz-border-radius: 10px ;
+      -webkit-border-radius: 10px ;
+    }
+
+    a:link,a:visited
+    {
+      color: #1367a7;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #208799;
+    }
+
+    td.dl-link {
+      height: 160px;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+      box-shadow:
+              0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+              5px 5px 0 0px #fff, /* The second layer */
+              5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+              10px 10px 0 0px #fff, /* The third layer */
+              10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+              15px 15px 0 0px #fff, /* The fourth layer */
+              15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+              20px 20px 0 0px #fff, /* The fifth layer */
+              20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+              25px 25px 0 0px #fff, /* The fifth layer */
+              25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+      margin-left: 10px;
+      margin-right: 45px;
+    }
+
+
+    .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+      box-shadow:
+              0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+              5px 5px 0 0px #fff, /* The second layer */
+              5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+              10px 10px 0 0px #fff, /* The third layer */
+              10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+      margin-top: 5px;
+      margin-left: 10px;
+      margin-right: 30px;
+      margin-bottom: 5px;
+    }
+
+    .vert-cent {
+      position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    hr
+    {
+      border: 0;
+      height: 1px;
+      max-width: 1100px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+
+    #authors td {
+      padding-bottom:5px;
+      padding-top:30px;
+    }
+  </style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <head>
+</head>
+
+<body>
+      <br>
+      <center><span style="font-size:44px;font-weight:bold;font-family:Source Sans Pro;">Decoupling Exploration and Exploitation in <br/>Meta-Reinforcement Learning without Sacrifices</center><br/>
+      <div class="table-like" style="justify-content:space-evenly;max-width:900px;margin:auto;">
+          <div><center><span style="font-size:25px">Anonymous Authors</span></center>
+          <center><span style="font-size:25px">Under submission at ICML 2021</span></center>
+          </div>
+      </div>
+
+      <div style="width:800px; margin:0 auto; text-align=left", align="left">
+
+      <hr>
+      <center id="videos"><h1>Visualizations of the Learned Policies</h1></center>
+        <p>We provide visualizations and analysis of the policies learned by DREAM and other approaches below.</p>
+
+        <center><h2>Distracting Bus</h2></center>
+
+        <center>
+          <a href="resources/city_examples.svg"><img src="resources/city_examples.svg" width="800px"></img></a>
+          <p align="center" style="width:600px">
+            Examples of different problems and goals.
+            In different <i>problems</i>, the colored buses in the corners
+            change positions to be one of the 4! permutations.
+            In different <i>episodes</i>, the goal location changes to one of the four corners.
+          </p>
+        </center>
+
+        <p>
+          In the <i>distracting bus</i> task, the agent must go to the goal
+          location (green square), which is randomly placed in one of the four
+          corners, in as few timesteps as possible.
+          In different problems, the destinations of the buses is randomized to
+          different permutations.
+          See the two examples above.
+        </p>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/city/dream_exploration.gif"><img src="resources/city/dream_exploration.gif" width="375px" style="padding:0px"></img></a>
+            <center><p align="center"><b>Exploration</b> learned by DREAM.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/city/dream_exploitation.gif"><img src="resources/city/dream_exploitation.gif" width="375px" style="padding:0px"></img></a>
+            <center><p align="center"><b>Exploitation</b> learned by DREAM.</p></center>
+          </div>
+        </div>
+
+        <p>
+          As shown above, DREAM learns to optimally explore (left) by visiting all of the helpful
+          (colored) buses, while ignoring all the unhelpful (gray) buses.
+          During exploitation episodes (right), this allows it to ride the bus that
+          leads closest to the goal, which yields optimal returns.
+        </p>
+
+        <p>
+          In contrast, as shown below, both IMPORT and E-RL<sup>2</sup> get
+          stuck in a local optimum due to the chicken-and-egg problem, where
+          they learn not to explore at all (left), opting to immediately end the
+          exploration episode.
+          This yields suboptimal exploitation behavior (right), which walks to
+          the goal, since the bus destinations are not learned during exploration.
+        </p>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/city/rl2_exploration.gif"><img src="resources/city/rl2_exploration.gif" width="375px"></img></a>
+            <center><p align="center"><b>Exploration</b> learned by E-RL<sup>2</sup> and IMPORT.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/city/rl2_exploitation.gif"><img src="resources/city/rl2_exploitation.gif" width="375px"></img></a>
+            <center><p align="center"><b>Exploitation</b> learned by E-RL<sup>2</sup> and IMPORT.</p></center>
+          </div>
+        </div>
+
+        <hr>
+        <center><h2>Cooking</h2></center>
+
+        <center>
+          <a href="resources/city_examples.svg"><img src="resources/cooking_example.svg" width="800px"></img></a>
+          <p align="center" style="width:600px">
+            Examples of different problems and goals.
+            In different <i>problems</i>, the three fridges on the right are
+            different colors, indicating different ingredients.
+            In different <i>episodes</i>, the goal (recipe) changes to be
+            placing two ingredients in the pot in the correct order.
+          </p>
+        </center>
+
+        <p>
+          In the <i>cooking</i> task, the agent must place two ingredients in
+          the pot in the order specified by the recipe (goal).
+          The (color-coded) ingredients in the fridges change in different problems.
+          See the examples above.
+          The agent receives positive reward for each step of:
+          1) picking up the correct first ingredient;
+          2) placing it in the pot;
+          3) picking up the correct second ingredient;
+          4) placing it in the pot.
+          The agent receives a per timestep negative reward and also a large
+          negative reward for picking up the wrong ingredient (as it goes to
+          waste).
+        </p>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/cooking/dream_exploration.gif"><img src="resources/cooking/dream_exploration.gif" width="300px" style="padding:0px"></img></a>
+            <center><p align="center"><b>Exploration</b> learned by DREAM.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/cooking/dream_exploitation.gif"><img src="resources/cooking/dream_exploitation.gif" width="300px"></img></a>
+            <center><p align="center"><b>Exploitation</b> learned by DREAM.</p></center>
+          </div>
+        </div>
+
+        <p>
+          As shown above, DREAM learns to optimally explore by picking up the
+          ingredients from each of the fridges one-by-one, which allows it to
+          learn where each ingredient is located (left).
+          Then during exploitation episodes (right), it then achieve optimal
+          returns by directly retrieving the ingredients specified by the recipe.
+        </p>
+
+        <p>
+          In contrast, as shown below, E-RL<sup>2</sup> and IMPORT, get stuck in a local
+          optimum due to the chicken-and-egg problem, where they suboptimally
+          explore by only visiting a single fridge (left).
+          Consequently, during exploitation episodes (right), they don't know
+          where the purple ingredient is located, so they wastefully
+          accidentally grab an extra green ingredient from the top-right fridge,
+          which incurs high negative reward.
+        </p>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/city/rl2_exploration.gif"><img src="resources/cooking/rl2_exploration.gif" width="300px" style="padding:0px"></img></a>
+            <center><p align="center"><b>Exploration</b> learned by E-RL<sup>2</sup> and IMPORT.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/city/rl2_exploitation.gif"><img src="resources/cooking/rl2_exploitation.gif" width="300px"></img></a>
+            <center><p align="center"><b>Exploitation</b> learned by E-RL<sup>2</sup> and IMPORT.</p></center>
+          </div>
+        </div>
+
+        <hr>
+        <center><h2>Sparse-Reward 3D Visual Navigation</h2></center>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/green.png"><img src="resources/green.png" width="375px"></img></a>
+            <center><p align="center">Sign reads <b style="color:green;">green</b>.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/red.png"><img src="resources/red.png" width="375px"></img></a>
+            <center><p align="center">Sign reads <b style="color:red;">red</b>.</p></center>
+          </div>
+        </div>
+
+        <p>
+          The sparse-reward 3D visual navigation task evalutes agents' ability to
+          scale to problems with high-dimensional visual observations and
+          sophisticated exploration challenges, pictured above.
+          We've made the benchmark from Kamienny et al., 2020 harder by
+          including a visual sign and more objects.
+          Each episode contains a goal to collect either a block or key.
+          The agent starts episodes on the far side of the barrier, and must
+          walk around the barrier to read the sign
+          (highlighted in <b style="color:#e6e600;">yellow</b>),
+          which in the three versions of the problem, specify going to the
+          <b style="color:green;">green</b>, <b style="color:red;">red</b>,
+          or <b style="color:blue;">blue</b> (not shown)
+          version of the object.
+          The agent receives 80x60 RGB images as observations and can turn
+          left or right, or move forward.
+          Going to the correct (correct color and shape)
+          object gives reward <b>+1</b> and going to the
+          wrong object gives reward <b>-1</b>.
+          Otherwise, the agent receives <b>0</b> reward.
+        </p>
+
+        <p>
+          DREAM learns near-optimal exploration and exploitation behaviors on this
+          task, which are pictured below. On the left, DREAM spends the
+          exploration episode walking around the barrier to read the sign,
+          which says <b style="color:blue;">blue</b>.
+          On the right, during an exploitation episode, DREAM receives the
+          goal to collect the key. Since DREAM already read that the sign said
+          <b style="color:blue;">blue</b> during the exploration episode, it collects the
+          <b style="color:blue;">blue</b> key.
+        </p>
+
+        <div class="table-like" style="justify-content:space-evenly;max-width:1100px;margin:auto;padding:0px">
+          <div>
+            <a href="resources/explore.gif"><img src="resources/explore.gif" width="375px" style="padding:0px"></img></a>
+            <center><p align="center">Exploration.</p></center>
+          </div>
+
+          <div>
+            <a href="resources/execute.gif"><img src="resources/execute.gif" width="375px"></img></a>
+            <center><p align="center">Execution: collect the key.</p></center>
+          </div>
+        </div>
+
+        <p>
+          <b>Comparisons.</b>
+          Broadly, prior meta-RL approaches fall into two main groups:
+          (i) <i>end-to-end</i> approaches, where exploration and exploitation are
+          optimized end-to-end based on exploitation rewards, and
+          (ii) <i>decoupled</i> approaches, where exploration and exploitation are
+          optimized with separate objectives.
+          We compare DREAM with state-of-the-art approaches from both
+          categories.  In the end-to-end category, we compare with:
+
+          <ul>
+            <li>
+              E-RL<sup>2</sup> (Stadie et al., 2018), the
+              canonical end-to-end approach, which learns a recurrent policy
+              conditioned on the entire sequence of past state and reward
+              observations, modified to better learn exploration.
+            </li>
+            <li>
+              VariBAD (Zintgraf et al., 2019), which additionally adds
+              auxiliary loss functions to the hidden state of the recurrent
+              policy to predict the rewards and dynamics of the current
+              problem.
+              This can be viewed as learning the <i>belief state</i>
+              (Kaelbling et al., 1998), a sufficient summary of all of its past
+              observations.
+            </li>
+            <li>
+              IMPORT (Kamienny et al., 2020), which additionally leverages the
+              problem identifier to help learn exploitation behaviors.
+            </li>
+          </ul>
+
+          Additionally, in the decoupled category, we compare with:
+          <ul>
+            <li>
+              PEARL-UB, an upperbound on PEARL (Rakelly et al., 2016). We
+              analytically compute the expected rewards achieved by the optimal
+              problem-specific policy that explores with Thompson sampling
+              (Thompson, 1933) using the true posterior distribution over
+              problems.
+            </li>
+          </ul>
+        </p>
+
+        <p>
+          <b>Quantitative results.</b>
+          Below, we plot the returns achieved by all approaches.
+          In contrast to DREAM, which achieves near-optimal returns,
+          we find that the end-to-end approaches get stuck in local optima,
+          indicative of the coupling problem.
+          They never read the sign, and
+          consequently avoid all objects, in fear of receiving negative reward
+          for going to the wrong object.
+          This achieves 0 reward.
+        </p>
+
+        <p>
+          On the other hand, while existing approaches in the decoupled category
+          avoid the coupling problem, optimizing their objectives does not lead
+          to the optimal exploration policy.
+          For example, Thompson sampling approaches (PEARL-UB) do not achieve
+          optimal reward, even with the optimal problem-specific exploitation
+          policy and access to the true posterior distribution over problems.
+          Recall that Thompson sampling explores by sampling a problem from the
+          posterior distribution and following the exploitation policy for that
+          problem.
+          Since the optimal exploitation policy directly goes to the correct
+          object, and never reads the sign, Thompson sampling never reads the
+          sign during exploration.
+        </p>
+
+        <center>
+          <a href="resources/sign.png"><img src="resources/sign.png" width="500px"></img></a>
+          <p align="center" style="width:500px">
+          Only DREAM reads the sign and solves the task.</p>
+        </center>
+
+        <hr>
+        <center id="acknowledgements"><h1>Summary</h1></center>
+        <p>
+          In the experiments, we evaluated DREAM to answer the following questions:
+          <ul>
+            <li>
+              Can DREAM efficiently explore to discover only the task-relevant information
+              in the face of distractions?
+            </li>
+            <li>
+              Can DREAM leverage informative objects to aid exploration?
+            </li>
+            <li>
+              Can DREAM learn exploration and exploitation behaviors that generalize to unseen problems?
+            </li>
+            <li>
+              Can DREAM scale to challenging exploration problems with
+              high-dimensional states and sparse rewards?
+            </li>
+          </ul>
+          Broadly, the answer is yes to all of these questions.
+          Check out our paper for detailed results!
+        </p>
+
+
+        <hr>
+        <center id="acknowledgements"><h1>Acknowledgements</h1></center>
+        <div style="width:800px; margin:0 auto; text-align=right">
+          <p>
+            Icons used in some of the above figures were made by Freepik,
+            ThoseIcons, Pixel perfect, dDara from
+            <a href="https://www.flaticon.com">flaticon.com</a>.
+          </p>
+
+</body>
+</html>
